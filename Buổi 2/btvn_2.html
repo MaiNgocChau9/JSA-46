@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuỗi và Dữ liệu</title>
+</head>
+<body>
+    <script>
+        let str = "Hello, world!";
+        let concatStr = str + " How are you?"; // Nối chuỗi
+        let subStr = concatStr.substring(0, 5); // Cắt chuỗi từ vị trí 0 đến 5
+        let lengthOfStr = concatStr.length; // Độ dài chuỗi
+        console.log("Nối chuỗi:", concatStr);
+        console.log("Cắt chuỗi:", subStr);
+        console.log("Độ dài chuỗi:", lengthOfStr);
+
+        let userInput = prompt("Nhập vào một chuỗi:");
+        let upperCaseInput = userInput.toUpperCase(); // Chuyển chuỗi sang in hoa
+        console.log(`Chuỗi sau khi in hoa: "${upperCaseInput}"`);
+
+        let userName = "Mai Ngọc Châu";
+        let userAge = 13;
+        console.log(`Tên bạn là ${userName} và bạn ${userAge} tuổi.`);
+
+        let userSentence = prompt("Nhập vào một câu:");
+        console.log("Độ dài câu:", userSentence.length);
+    </script>
+</body>
+</html>
