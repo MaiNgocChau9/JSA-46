@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let kichThuoc = prompt("Nhập kích thước");
+        for (let i = 0; i <= kichThuoc; i++) {
+            let output = "";
+            for (let j = 1; j <= i; j++) {
+                output += j;
+            }
+            console.log(output);
+        }
+
+        //================================//
+
+        let kiTu = prompt("Nhập một chuỗi ký tự");
+        let output = "";
+
+        for (let i = 0; i < kiTu.length; i++) {
+            output += kiTu[i];
+        }
+
+        for (let i = kiTu.length - 2; i >= 0; i--) {
+            output += kiTu[i];
+        }
+
+        console.log(output);
+    </script>
+</body>
+</html>
