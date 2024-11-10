@@ -51,3 +51,9 @@ console.log("Đây là dấu \n \t \"Backlash\"");
     console.log(firstName.charAt(15));
   //* Trả về undefined nếu index > length
     console.log(lastName[3]);
+
+ //* 10. Toán tử 3 ngôi
+ let a = 10;
+ let ngoi = a ? "true" : "false"; 
+  // ngoi = <điều kiện> ? <đúng thì> : <sai thì>;
+ console.log(ngoi);
