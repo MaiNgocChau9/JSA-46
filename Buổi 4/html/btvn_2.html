@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Tracker</title>
+    <style>
+        *{font-family: Arial, sans-serif;}
+        body {margin: 20px;}
+        .task {margin: 10px 0;}
+        button {margin: 2px;}
+        .edit-input {display: none;}
+    </style>
+</head>
+<body>
+    <h1>Task Tracker</h1>
+    
+    <div>
+        <input type="text" id="taskInput">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <div id="taskList"></div>
+
+    <script>
+        function addTask() {
+            let input = document.getElementById('taskInput');
+            let taskText = input.value;
+            
+            if (taskText) {
+                const taskList = document.getElementById('taskList');
+                const taskDiv = document.createElement('div');
+                taskDiv.className = 'task';
+                
+                taskDiv.innerHTML = `
+                    <span class="task-text">${taskText}</span>
+                    <input type="text" class="edit-input">
+                    <button onclick="editTask(this)">Edit</button>
+                    <button onclick="this.parentElement.remove()">Delete</button>
+                `;
+                
+                taskList.appendChild(taskDiv);
+                input.value = '';
+            }
+        }
+
+        function editTask(button) {
+            const taskDiv = button.parentElement;
+            const taskText = taskDiv.querySelector('.task-text');
+            const editInput = taskDiv.querySelector('.edit-input');
+            
+            if (editInput.style.display === 'none' || editInput.style.display === '') {
+                editInput.value = taskText.textContent;
+                taskText.style.display = 'none';
+                editInput.style.display = 'inline';
+                button.textContent = 'Save';
+            } else {
+                taskText.textContent = editInput.value;
+                taskText.style.display = 'inline';
+                editInput.style.display = 'none';
+                button.textContent = 'Edit';
+            }
+        }
+    </script>
+</body>
+</html>
