@@ -135,11 +135,17 @@
             }
           }, 1000);
         } else {
-          setTimeout(() => {
-            card1.classList.remove("flipped");
-            card2.classList.remove("flipped");
-            flippedCards = [];
-            canFlip = true;
+          let intervalCounter = 0;
+          const interval = setInterval(() => {
+            if (intervalCounter === 1) {
+              alert("Vui lòng chọn lại T.T");
+              card1.classList.remove("flipped");
+              card2.classList.remove("flipped");
+              flippedCards = [];
+              canFlip = true;
+              clearInterval(interval);
+            }
+            intervalCounter++;
           }, 500);
         }
       }
