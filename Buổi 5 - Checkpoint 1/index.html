@@ -1,25 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Game</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      .score-board {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .game-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        max-width: 600px;
+      }
+
+      .card {
+        width: 100px;
+        height: 100px;
+        background-color: #ddd;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 0;
+      }
+
+      .card.flipped {
+        background-color: white;
+        font-size: 40px;
+      }
+
+      .card.matched {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board">Score: <span id="score">0</span></div>
+    <div class="game-container" id="gameContainer"></div>
     <script>
-        const users = [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }];
+      const cards = [
+        { id: 1, content: "🐶" },
+        { id: 1, content: "🐶" },
+        { id: 2, content: "🐱" },
+        { id: 2, content: "🐱" },
+        { id: 3, content: "🐰" },
+        { id: 3, content: "🐰" },
+        { id: 4, content: "🦊" },
+        { id: 4, content: "🦊" },
+        { id: 5, content: "🐻" },
+        { id: 5, content: "🐻" },
+        { id: 6, content: "🐼" },
+        { id: 6, content: "🐼" },
+        { id: 7, content: "🐨" },
+        { id: 7, content: "🐨" },
+        { id: 8, content: "🦁" },
+        { id: 8, content: "🦁" },
+      ];
 
-function updateUser(id, newName) {
-  users.forEach(user => {
-    console.log(user.id);
-    if (user.id == id) {
-      user.name = newName;
-    }
-  });
-}
+      let flippedCards = [];
+      let score = 0;
+      let canFlip = true;
 
-updateUser(2, 'Charlie');
-console.log(users);
+      const gameContainer = document.getElementById("gameContainer");
+      const scoreElement = document.getElementById("score");
+
+      function shuffleCards() {
+        return cards.sort(() => Math.random() - 0.5);
+      }
+
+      function createCards() {
+        const shuffledCards = shuffleCards();
+        shuffledCards.forEach((card, index) => {
+          const cardElement = document.createElement("div");
+          cardElement.classList.add("card");
+          cardElement.setAttribute("data-id", card.id);
+          cardElement.setAttribute("data-index", index);
+          cardElement.textContent = card.content;
+          cardElement.addEventListener("click", flipCard);
+          gameContainer.appendChild(cardElement);
+        });
+      }
+
+      function flipCard() {
+        if (!canFlip) return;
+        if (this.classList.contains("flipped")) return;
+
+        this.classList.add("flipped");
+        flippedCards.push(this);
+
+        if (flippedCards.length === 2) {
+          canFlip = false;
+          checkMatch();
+        }
+      }
+
+      function checkMatch() {
+        const [card1, card2] = flippedCards;
+        const match =
+          card1.getAttribute("data-id") === card2.getAttribute("data-id");
+
+        if (match) {
+          setTimeout(() => {
+            card1.classList.add("matched");
+            card2.classList.add("matched");
+            score += 10;
+            scoreElement.textContent = score;
+
+            flippedCards = [];
+            canFlip = true;
+            if (score === 80) {
+              alert("Chúc mừng! Bạn đã chiến thắng!");
+            }
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            card1.classList.remove("flipped");
+            card2.classList.remove("flipped");
+            flippedCards = [];
+            canFlip = true;
+          }, 500);
+        }
+      }
+
+      createCards();
     </script>
-</body>
+  </body>
 </html>
