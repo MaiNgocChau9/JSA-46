@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fireworks Button</title>
+<style>
+/* Basic styling for the button */
+#fireworksButton {
+position: relative;
+padding: 15px 30px;
+background-color: #4CAF50; /* Green background */
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+user-select: none; /* Prevent text selection on hover */
+}
+
+#fireworksButton:hover {
+opacity: 0.8;
+}
+
+/* Fireworks animation keyframes */
+@keyframes fireworks {
+0% {
+transform: scale(1);
+opacity: 1;
+}
+50% {
+transform: scale(2);
+background-color: #FFA500; /* Orange color for firework trails */
+}
+70% {
+transform: scale(3);
+background-color: #FFFFFF; /* White color to fade out */
+opacity: 0.8;
+}
+100% {
+transform: scale(4) rotate(360deg);
+opacity: 0;
+}
+}
+
+/* Firework particles */
+.particle {
+position: absolute;
+width: 5px;
+height: 5px;
+background-color: #FFA500; /* Orange color for particles */
+border-radius: 50%;
+animation: fireworks 3s ease-out forwards, move 10s linear infinite;
+}
+
+@keyframes move {
+to {
+transform: translateY(200px) scale(0);
+opacity: 0;
+}
+}
+</style></head>
+<body>
+
+<button id="fireworksButton">Click Me!</button>
+
+<script>
+// Get the button element
+const button = document.getElementById('fireworksButton');
+
+// Function to create particles and animate them
+function createFirework() {
+const fireworkDiv = document.createElement('div');
+fireworkDiv.classList.add('particle');
+
+// Position the particle just below the button to make it appear as if coming from the button
+fireworkDiv.style.top = '100px'; // Adjust based on desired animation height
+fireworkDiv.style.left = Math.random() * (window.innerWidth - 50) + 'px'; // Random x position
+
+document.body.appendChild(fireworkDiv);
+
+// Animate the particle to move upwards and fade out
+setTimeout(() => {
+fireworkDiv.style.animation = 'fireworks 3s ease-out forwards';
+}, 100); // Delay to stagger fireworks
+}
+
+// Add click event listener to the button
+button.addEventListener('click', () => {
+const numParticles = 20; // Number of particles for each firework
+
+for (let i = 0; i < numParticles; i++) {
+createFirework();
+}
+});
+</script>
+
+</body>
+</html>
