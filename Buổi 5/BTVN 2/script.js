@@ -11,7 +11,6 @@ const previewEmail = document.getElementById('previewEmail');
 const previewPhone = document.getElementById('previewPhone');
 const previewAddress = document.getElementById('previewAddress');
 
-// Load data from localStorage
 const loadData = () => {
     const data = JSON.parse(localStorage.getItem('profileData'));
     if (data) {
@@ -25,7 +24,6 @@ const loadData = () => {
     }
 };
 
-// Save data to localStorage
 const saveData = () => {
     const data = {
         name: nameInput.value,
@@ -37,7 +35,6 @@ const saveData = () => {
     localStorage.setItem('profileData', JSON.stringify(data));
 };
 
-// Update preview card
 const updatePreview = () => {
     previewImage.src = profilePictureInput.value || 'https://images.unsplash.com/photo-1449247709967-d4461a6a6103?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
     previewName.textContent = nameInput.value || 'Tên';
@@ -46,7 +43,6 @@ const updatePreview = () => {
     previewAddress.textContent = `Địa chỉ: ${addressInput.value}` || 'Địa chỉ';
 };
 
-// Form submission
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     saveData();
@@ -54,5 +50,4 @@ form.addEventListener('submit', (event) => {
     alert('Hồ sơ đã được lưu!');
 });
 
-// Load data on page load
 loadData();
