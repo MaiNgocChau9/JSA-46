@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindX Cinema - Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://i.redd.it/zjgs096khv591.jpg");
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-container {
+            background-color: rgba(0 0 0 / 0.85);
+            border-radius: 4px;
+            padding: 60px 68px 40px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .signup-title {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 50px;
+            background-color: #333;
+            border: none;
+            border-radius: 4px;
+            padding: 16px 20px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-input:focus {
+            background-color: #454545;
+        }
+
+        .signup-button {
+            width: 100%;
+            height: 48px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 24px 0 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .signup-button:hover {
+            background-color: #f40612;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #b3b3b3;
+            font-size: 13px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 5px;
+        }
+
+        .help-link {
+            color: #b3b3b3;
+            text-decoration: none;
+        }
+
+        .help-link:hover {
+            text-decoration: underline;
+        }
+
+        .signin-now {
+            color: #737373;
+            font-size: 16px;
+            margin-top: 16px;
+        }
+
+        .signin-link {
+            color: white;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .signin-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1 class="signup-title">Sign Up</h1>
+        <form id="signup-form">
+            <div class="form-group">
+                <input type="text" class="form-input" id="username" placeholder="Username" required minlength="6" maxlength="18">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-input" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-input" id="password" placeholder="Password" required minlength="8" maxlength="20">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-input" id="confirm-password" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="signup-button">Sign Up</button>
+            <div class="form-footer">
+                <label class="remember-me">
+                    <input type="checkbox" id="remember">
+                    Remember me
+                </label>
+                <a href="#" class="help-link">Need help?</a>
+            </div>
+        </form>
+        <div class="signin-now">
+            Already have an account?
+            <a href="./sign_in.html" class="signin-link">Sign in now</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Passwords do not match.');
+            } else {
+                e.preventDefault();
+                window.location.href = './sign_in.html';
+            }
+        });
+    </script>
+</body>
+</html>

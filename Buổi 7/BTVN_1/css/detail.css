@@ -1,0 +1,50 @@
+body {
+    background-color: #141414;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+#movie-detail {
+    background-color: #222;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 60%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.movie-image {
+    width: 30%;
+    margin-right: 20px;
+}
+
+.movie-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.movie-description {
+    width: 60%;
+}
+
+#movie-detail h2 {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #66d9ef;
+}
+
+#movie-detail p {
+    font-size: 16px;
+    color: #ccc;
+}
