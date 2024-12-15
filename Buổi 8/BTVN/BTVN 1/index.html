@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{ display: block; margin-bottom: 10px; }
+        .error{ color: red; margin: 0; margin-bottom: 10px; display: none; }
+    </style>
+</head>
+    <body>
+        <form id="login">
+            <h1>Login</h1>
+            <input type="text" id="username" placeholder="Enter your username" required>
+            <input type="text" id="email" placeholder="Enter your email" required>
+            <p class="error email">Email sai định dạng</p>
+            <input type="text" id="password" placeholder="Enter your password" required>
+            <p class="error password">Mật khẩu phải chứa chữ viết hoa, viết thường, số, kí tự đặc biệt, và có trên 8 kí tự.</p>
+            <input type="text" id="phone" maxlength="10" placeholder="Enter your phone number" required>
+            <p class="error phone">Số điện thoại sai định dạng</p>
+            <button type="submit">Login</button>
+        </form>
+    </body>
+    <script>
+        const form = document.getElementById('login');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const phone = document.getElementById('phone');
+
+            // Email
+            function isValidEmail(email) {
+                if (!email.includes("@")) return false;
+
+                const parts = email.split("@");
+                if (parts.length !== 2) return false;
+
+                const [username, domain] = parts;
+
+                if (username.length === 0 || username.includes(" ")) return false;
+
+                if (!domain.includes(".") || domain.startsWith(".") || domain.endsWith(".")) return false;
+
+                if (domain.includes(" ")) return false;
+
+                const domainParts = domain.split(".");
+                if (domainParts.some(part => part.length === 0)) return false;
+
+                return true;
+            }
+
+            // Phone number
+            function isValidPhoneNumber(phone) {
+                for (let i = 0; i < phone.length; i++) {
+                    character = "0123456789";
+                    if (!character.includes(phone[i])) {
+                        return false;
+                    }
+                }
+            }
+
+            // Password
+            function isValidPassword(password) {
+                if (password.length < 8) return false;
+
+                const hasUpperCase = [...password].some(char => char >= 'A' && char <= 'Z'); // Viết hoa
+                const hasLowerCase = [...password].some(char => char >= 'a' && char <= 'z'); // Viết thường
+                const hasNumber = [...password].some(char => char >= '0' && char <= '9');    // Chữ số
+                const hasSpecialChar = [...password].some(char => "!@#$%^&*()-_=+[]{}|;:'\",.<>?/".includes(char)); // Ký tự đặc biệt
+
+                return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
+            }
+
+            // CHECK
+            if (!isValidEmail(email.value)) {
+                email.nextElementSibling.style.display = 'block';
+            } else {
+                email.nextElementSibling.style.display = 'none';
+            }
+            if (!isValidPhoneNumber(phone.value)) {
+                phone.nextElementSibling.style.display = 'block';
+            } else {
+                phone.nextElementSibling.style.display = 'none';
+            }
+            if (!isValidPassword(password.value)) {
+                password.nextElementSibling.style.display = 'block';
+            } else {
+                password.nextElementSibling.style.display = 'none';
+            }
+
+        });
+    </script>
+</html>

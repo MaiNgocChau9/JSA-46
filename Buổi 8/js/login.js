@@ -4,7 +4,7 @@ const pathname = location.pathname;
 //! [HOME]
 if (
     pathname.includes("index.html") ||
-    pathname.charAt(pathname.length - 1) == "/"
+    pathname.charAt(pathname.length) == "/"
 ) {
     // Kiểm tra nếu chưa login => chuyển trang Login
     if (!localStorage.getItem("currentUser")) {
